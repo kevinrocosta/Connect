@@ -19,3 +19,378 @@
             --night-bg: #070809;
             --section-bg: #0C0D0F;
             --card-bg: #121417;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1A1;
+            --border-color: #2a2a2a;
+            --font-main: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--night-bg);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            /* EFEITO DE VIDA: Fundo de estrelas sutil para um tema mais sofisticado */
+            background-image:
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+                radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        section { padding: 100px 0; border-bottom: 1px solid #1a1a1a; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 70px; }
+        p { font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); }
+        .sub-heading { text-align: center; max-width: 700px; margin: -50px auto 70px; }
+        .highlight { color: var(--brand-green); }
+        .highlight.decolar-text { color: var(--decolar-blue); }
+        .highlight.avancado-text { color: var(--brand-green); }
+        .highlight.imperio-text { color: var(--gold); }
+
+        /* LOGO: Estilo moderno para o logotipo em texto */
+        .logo-header-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            text-align: center;
+            margin-bottom: 35px;
+            letter-spacing: -3px;
+            color: var(--text-primary);
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+            text-decoration: none;
+        }
+        .logo-header-text .highlight {
+            color: var(--brand-green);
+        }
+        
+        /* BOTÕES: Efeitos magnéticos e chamativos para induzir o clique */
+        .btn {
+            display: inline-block; padding: 18px 36px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: none; cursor: pointer; text-align: center; position: relative; overflow: hidden;
+        }
+        .btn-primary { background: var(--brand-green); color: #000; box-shadow: 0 4px 15px rgba(57, 255, 20, 0.2); }
+        .btn:before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255, 255, 255, 0.3); border-radius: 50%;
+            transform: translate(-50%, -50%); transition: width 0.4s ease, height 0.4s ease;
+        }
+        .btn:hover:before { width: 250%; height: 250%; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(57, 255, 20, 0.4); }
+        
+        .video-wrapper { max-width: 900px; margin: 0 auto; border-radius: 16px; padding: 8px; background: linear-gradient(145deg, #1a1a1a, #101010); }
+        
+        .dashboard { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .input-group input { width: 100%; padding: 18px; font-size: 1.1rem; background-color: var(--night-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); margin: 15px 0; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
+        .result-item .label { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+        .result-item .value { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; }
+        .result-item .value i { color: var(--brand-green); margin-right: 10px; }
+        .value.positive { color: var(--brand-green); }
+        .value.neutral { color: var(--gold); }
+        .control-group label { display: block; margin-bottom: 15px; font-weight: 500; }
+        .control-group input[type="range"] { -webkit-appearance: none; width: 100%; height: 8px; background: var(--border-color); border-radius: 5px; outline: none; }
+        .control-group input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; background: var(--brand-green); cursor: pointer; border-radius: 50%; box-shadow: 0 0 10px rgba(57, 255, 20, 0.5); }
+        .slider-value { font-weight: 700; color: var(--brand-green); font-size: 1.2rem; }
+        .million-celebration .fa-trophy { color: var(--gold); }
+        .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: left;}
+        .pain-card { background: var(--card-bg); padding: 30px; border-radius: 12px; border-left: 4px solid #FF4500; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pain-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        /* ÍCONES: Tamanho ajustado */
+        .pain-card i { font-size: 1.6rem; color: #FF4500; margin-bottom: 20px; }
+        .pain-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .phone-mockup { width: 100%; max-width: 380px; height: 750px; margin: 0 auto; background: #0c0c0c; border: 14px solid #111; border-radius: 50px; padding: 10px; box-shadow: 0 0 80px rgba(0,0,0,0.6); }
+
+        .security-seals { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
+        .seal-item { text-align: center; color: var(--text-secondary); transition: transform 0.3s ease, color 0.3s ease; }
+        .seal-item:hover { transform: scale(1.1); color: var(--text-primary); }
+        /* ÍCONES: Tamanho ajustado */
+        .seal-item i { font-size: 2.2rem; margin-bottom: 12px; }
+        .seal-item .google { color: #4285F4; }
+        .seal-item .ssl { color: #00A653; }
+        .seal-item .payment { color: #6872ff; }
+        .seal-item span { font-size: 0.9rem; font-weight: 500; }
+        
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
+        .pricing-plan { background: var(--card-bg); padding: 40px 30px; border-radius: 15px; border: 2px solid var(--border-color); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pricing-plan:not(.popular):hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .pricing-plan.decolar { border-color: var(--decolar-blue); }
+
+        .pricing-plan.popular { 
+            border-color: var(--brand-green); transform: scale(1.05); position: relative; 
+            animation: pulse-throb 2s infinite ease-in-out;
+        }
+        @keyframes pulse-throb { 0%, 100% { transform: scale(1.05); box-shadow: 0 0 25px rgba(57, 255, 20, 0.4); } 50% { transform: scale(1.09); box-shadow: 0 0 55px rgba(57, 255, 20, 0.7); } }
+        
+        .popular-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--brand-green); color: #000; padding: 5px 20px; border-radius: 0 0 10px 10px; font-weight: 700; font-size: 0.9rem; }
+        .pricing-plan.empire {
+            background: linear-gradient(145deg, #1c1c1c, #0f0f0f); border: 2px solid var(--gold);
+            animation: shimmer-glow 3s infinite linear;
+        }
+        @keyframes shimmer-glow { 0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); } 50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); } 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); } }
+        .pricing-plan h3 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .pricing-plan.decolar h3 { color: var(--decolar-blue); }
+        .pricing-plan.popular h3 { color: var(--brand-green); }
+        .pricing-plan.empire h3 { color: var(--gold); }
+        .plan-price { font-size: 2.5rem; font-weight: 800; }
+        .plan-features li i { color: var(--brand-green); }
+        .pricing-plan.decolar .plan-features li i { color: var(--decolar-blue); }
+        .pricing-plan.empire .plan-features li i { color: var(--gold); }
+        .plan-recommendation strong { color: var(--brand-green); }
+        .pricing-plan.decolar .plan-recommendation strong { color: var(--decolar-blue); }
+        .pricing-plan.empire .plan-recommendation strong { color: var(--gold); }
+        
+        .faq-item { background-color: var(--card-bg); margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
+        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 25px; font-size: 1.2rem; font-weight: 600; color: var(--text-primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question i { transition: transform 0.3s ease; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--brand-green); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer p { padding: 0 25px 25px; margin: 0; color: var(--text-secondary); }
+        
+        .main-footer { padding: 60px 0 30px; background-color: #000; text-align: center; border-top: 1px solid var(--border-color); }
+        .footer-version { font-size: 2rem !important; margin-bottom: 25px; display: inline-block; }
+        .footer-links a { color: var(--text-primary); text-decoration: none; margin: 0 15px; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; cursor: pointer; }
+        .footer-links a:hover { color: var(--brand-green); }
+        .copyright { margin-top: 20px; font-size: 0.9rem; color: #555; }
+        
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); z-index: 1000; display: none; justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid var(--border-color); max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative; }
+        .modal-content h1 { font-size: 2rem; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+        .modal-content h2 { font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
+        .modal-content p, .modal-content li { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; }
+        .modal-content ul { padding-left: 20px; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--text-secondary); cursor: pointer; border: none; background: none; }
+        .modal-close:hover { color: var(--text-primary); }
+
+        @media (max-width: 992px) { .pricing-plan.popular, .pricing-plan.empire { transform: scale(1); animation: none; } }
+    </style>
+</head>
+<body>
+    <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events: none;"></canvas>
+    <main>
+        <section id="hero">
+             <div class="container" style="text-align: center;">
+                
+                <div class="logo-header-text">
+                    Connect<span class="highlight">Hype</span>
+                </div>
+
+                <h1 style="max-width: 850px; margin-left: auto; margin-right: auto;">Você tem o produto que o Brasil deseja. Por que vender apenas para sua vizinhança?</h1>
+                <p style="max-width: 700px; margin: 24px auto 50px; font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary);">Chegou a hora de parar de competir por preço e começar a dominar por alcance. Aperte o play e descubra o ecossistema que transforma sua loja em um nome nacional.</p>
+                
+                <div class="video-wrapper">
+                    <div style="padding:56.25% 0 0 0;position:relative;">
+                        <iframe src="https://player.vimeo.com/video/1097054658?badge=0&autopause=0&player_id=0&app_id=58479&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ConnectHype"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="pain-points">
+            <div class="container">
+                <h2>Você se identifica com isso?</h2>
+                <div class="pain-grid">
+                    <div class="pain-card"><i class="fas fa-hand-holding-dollar"></i><h3>Guerra de Preços Local</h3><p>Seu maior diferencial virou o "descontinho"? A concorrência local nivela todo mundo por baixo, espremendo seu lucro.</p></div>
+                    <div class="pain-card"><i class="fas fa-store-lock"></i><h3>Vendas que "Dormem"</h3><p>Sua loja fecha às 18h, mas a vontade do seu cliente de comprar não. Você perde vendas todas as noites e fins de semana.</p></div>
+                    <div class="pain-card"><i class="fas fa-users-slash"></i><h3>Público Limitado</h3><p>Seus posts no Instagram alcançam sempre as mesmas pessoas. Você sente que tem potencial para muito mais, mas não sabe como.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="analyzer">
+             <div class="container">
+                <h2>Sua Realidade Atual vs. Seu Potencial Futuro</h2>
+                <p class="sub-heading">Insira o @ da sua loja para um diagnóstico gratuito e veja a transformação que o Plano Avançado pode gerar.</p>
+                <div class="dashboard">
+                    <div class="input-group" style="grid-column: 1 / -1;"><input type="text" id="instagramHandle" placeholder="@ da sua loja no Instagram"><button id="analysisBtn" class="btn btn-primary" onclick="runAnalysis()" style="width: 100%;">Analisar Potencial Agora <i class="fas fa-arrow-right"></i></button></div>
+                    <div class="results-grid" style="grid-column: 1 / -1; margin-top: 30px;">
+                        <div class="result-item"><span class="label">Seguidores Atuais</span><div class="value positive" id="followersValue"><i class="fab fa-instagram"></i>--</div></div>
+                        <div class="result-item"><span class="label">Projeção (Plano Avançado)</span><div class="value positive" id="followersProjected"><i class="fas fa-rocket"></i>--</div></div>
+                        <div class="result-item"><span class="label">Ganho de Seguidores</span><div class="value positive" id="followersGain"><i class="fas fa-plus"></i>--</div></div>
+                        <div class="result-item"><span class="label">Engajamento Projetado</span><div class="value positive" id="engagementProjected"><i class="fas fa-fire"></i>--</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="growth-simulator">
+            <div class="container">
+                <h2>Projete seu Império Digital</h2>
+                <p class="sub-heading">Veja a mágica acontecer. Informe seu lucro por aparelho e ajuste o investimento para visualizar seu potencial de lucro anual com dados reais.</p>
+                <div class="dashboard">
+                    <div class="input-group" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center;">
+                        <div><label for="avgProfit" style="font-weight: 500;">1. Qual seu lucro médio por iPhone?</label><input type="number" id="avgProfit" placeholder="Ex: 600" oninput="updateSimulator()"></div>
+                        <div class="control-group"><label for="adSpend">2. Ajuste seu investimento diário:</label><input type="range" id="adSpend" min="20" max="5000" value="100" step="10" oninput="updateSimulator()"><span class="slider-value" id="adSpendValue">R$ 100,00</span></div>
+                    </div>
+                    <div class="results-grid" style="grid-column: 1 / -1; margin-top: 30px;">
+                        <div class="result-item"><span class="label">Cliques Estimados / Mês</span><div class="value neutral" id="clicksResult"><i class="fas fa-mouse-pointer"></i>--</div></div>
+                        <div class="result-item"><span class="label">Vendas Estimadas / Mês</span><div class="value positive" id="salesResult"><i class="fas fa-shopping-cart"></i>--</div></div>
+                        <div class="result-item million-celebration" style="grid-column: 1 / -1; text-align: center;"><span class="label">LUCRO Anual Projetado</span><div class="value positive" id="revenueResult" style="font-size: 3rem; justify-content: center;"><i class="fas fa-trophy"></i>--</div></div>
+                    </div>
+                    <div id="plan-recommendation-simulator" style="text-align:center; margin-top: 30px; padding: 15px; border-radius: 10px; background: rgba(57, 255, 20, 0.05);"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo">
+             <div class="container" style="text-align: center;">
+                 <h2>Sua Nova Vitrine Para o Brasil</h2>
+                 <p class="sub-heading">É assim que seus clientes de todo o país verão sua loja: profissional, rápida e irresistível. Navegue na demonstração e sinta a experiência.</p>
+                 <div class="phone-mockup"><iframe src="https://www.zema.com/phone-16-apple-128gb-verde-acinzentado-tela-de-61-5g-e-c%C3%A2mera-de-48mp/P551396S23Zema" width="100%" height="100%" style="border-radius: 40px; border: none;"></iframe></div>
+                 <div class="security-seals">
+                    <div class="seal-item"><i class="fab fa-google google"></i><span>Navegação Segura</span></div>
+                    <div class="seal-item"><i class="fas fa-shield-halved ssl"></i><span>Site Blindado</span></div>
+                    <div class="seal-item"><i class="fas fa-credit-card payment"></i><span>Pagamento Protegido</span></div>
+                 </div>
+                 <p style="max-width: 600px; margin: 30px auto 0; font-size: 1rem;">Sua loja será construída sobre uma base de segurança total, com certificado SSL que criptografa todos os dados, navegação segura verificada pelo Google e sistemas de pagamento que protegem cada transação, garantindo a tranquilidade que você e seu cliente merecem.</p>
+             </div>
+        </section>
+        
+        <section id="pricing">
+             <div class="container">
+                <h2>Escolha o Módulo de Lançamento do seu Império</h2>
+                <p class="sub-heading">Sua jornada para deixar de ser uma loja local e se tornar uma marca nacional começa com uma decisão. Cada plano é um degrau para o próximo nível.</p>
+                <div class="pricing-grid">
+                    <div class="pricing-plan decolar">
+                        <h3>Plano DECOLAR</h3><p>Para você que é visionário e está pronto para dar o <strong>primeiro passo</strong>, transformando sua loja física em uma presença online profissional.</p><div class="plan-price">R$ 1.200</div><p class="plan-monthly-fee" style="margin-bottom: 30px;">+ R$ 1.200 / mês</p>
+                        <ul class="plan-features"><li><i class="fas fa-check"></i> Loja Virtual Profissional</li><li><i class="fas fa-check"></i> Produtos do Estoque Cadastrados</li><li><i class="fas fa-check"></i> Gestão de Tráfego Inicial</li><li><i class="fas fa-check"></i> Suporte Estratégico</li></ul>
+                        <div class="plan-recommendation">Recomendado: <strong>mín. R$ 30/dia</strong> em tráfego.</div><a href="https://wa.me/5518930857734?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20iniciar%20minha%20expans%C3%A3o%20com%20o%20Plano%20DECOLAR." target="_blank" class="btn btn-primary" style="margin-top: auto;">Quero Decolar</a>
+                    </div>
+                    <div class="pricing-plan popular">
+                        <div class="popular-badge">RECOMENDADO</div><h3>Plano AVANÇADO</h3><p>Para você que já tem um negócio validado e quer <strong>acelerar o crescimento</strong>, buscando autoridade e escala de vendas nacional.</p><div class="plan-price">R$ 2.500</div><p class="plan-monthly-fee" style="margin-bottom: 30px;">+ R$ 1.500 / mês</p>
+                        <ul class="plan-features"><li><i class="fas fa-check"></i> Tudo do Plano Decolar</li><li><i class="fas fa-check"></i> <strong>Meta: 10.000 seguidores em 1 mês</strong></li><li><i class="fas fa-check"></i> <strong>BÔNUS: 7 Dias de Tráfego por nossa conta</strong></li><li><i class="fas fa-check"></i> IA para Criar Anúncios</li><li><i class="fas fa-check"></i> Chatbot Básico para WhatsApp</li></ul>
+                        <div class="plan-recommendation">Recomendado: <strong>mín. R$ 100/dia</strong> em tráfego.</div><a href="https://wa.me/5518930857734?text=Ol%C3%A1!%20Vi%20a%20oferta%20no%20site%20e%20quero%20acelerar%20meu%20crescimento%20com%20o%20Plano%20AVAN%C3%87ADO." target="_blank" class="btn btn-primary" style="margin-top: auto;">Quero o Avançado</a>
+                    </div>
+                    <div class="pricing-plan empire">
+                        <h3>Plano IMPÉRIO</h3><p>A solução definitiva para quem pensa grande e está decidido a <strong>dominar o mercado</strong> e construir uma máquina de vendas milionária.</p><div class="plan-price">R$ 10.000</div><p class="plan-monthly-fee" style="margin-bottom: 30px;">+ R$ 2.500 / mês</p>
+                        <ul class="plan-features"><li><i class="fas fa-check"></i> Tudo do Plano Avançado</li><li><i class="fas fa-check"></i> <strong>Meta: 30.000 seguidores em 1 mês</strong></li><li><i class="fas fa-check"></i> Automação de Funil de Vendas</li><li><i class="fas fa-check"></i> Consultoria de BI e Dados</li><li><i class="fas fa-check"></i> Gerente de Contas Dedicado</li></ul>
+                        <div class="plan-recommendation">Recomendado: <strong>mín. R$ 400/dia</strong> em tráfego.</div><a href="https://wa.me/5518930857734?text=Ol%C3%A1!%20Estou%20pronto%20para%20dominar%20o%20mercado.%20Quero%20contratar%20o%20Plano%20IMP%C3%89RIO." target="_blank" class="btn btn-primary" style="margin-top: auto;">Construir meu Império</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+             <div class="container" style="max-width: 800px;">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-item"><button class="faq-question">Preciso já ter estoque para começar? <i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Não necessariamente. Você pode começar vendendo seu estoque físico atual. Além disso, sua nova estrutura de e-commerce já vem preparada para o modelo de dropshipping, permitindo que você venda produtos de parceiros sem precisar investir em estoque inicial.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Vocês cuidam dos anúncios? <i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Sim! Em todos os planos, nós realizamos a gestão inicial de tráfego pago. Nos planos Avançado e Império, essa gestão é contínua e otimizada com o uso de Inteligência Artificial para criar os melhores anúncios e encontrar o público mais qualificado para sua loja.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Posso vender para o Brasil todo? <i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Com certeza. Essa é a principal vantagem do nosso ecossistema. Sua loja online será integrada com as principais transportadoras e terá cálculo de frete automático para qualquer CEP do Brasil, transformando sua operação local em um negócio de alcance nacional.</p></div></div>
+                <div class="faq-item"><button class="faq-question">E se eu não vender nada? <i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Nosso objetivo é o seu sucesso. Por isso, oferecemos um bônus de 7 dias de tráfego pago por nossa conta no Plano Avançado. Trabalhamos com base em dados e estratégias validadas para gerar resultados. O sucesso das suas vendas é uma parceria entre a nossa estrutura e a qualidade do seu atendimento.</p></div></div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+         <div class="container">
+            <a href="#hero" class="logo-header-text footer-version">
+                Connect<span class="highlight">Hype</span>
+            </a>
+            <div class="footer-links">
+                <a href="#faq">Dúvidas Frequentes</a>
+                <a onclick="openModal('privacyModal')">Política de Privacidade</a>
+                <a onclick="openModal('termsModal')">Termos de Serviço</a>
+            </div>
+            <p class="copyright">© 2025 ConnectHype. Todos os direitos reservados. Uma plataforma criada pela <strong>Equipe Unifinity</strong>.</p>
+        </div>
+    </footer>
+
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h1>Política de Privacidade</h1><p><strong>Última atualização:</strong> 27 de junho de 2025</p><h2>1. Introdução</h2><p>A <strong>Equipe Unifinity</strong> ("nós", "nosso"), como provedora de serviços para a loja ConnectHype, está comprometida em proteger a privacidade dos clientes ("você", "seu", "lojista"). Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você utiliza nossos serviços de criação e gestão de e-commerce e marketing digital ("Serviços").</p><h2>2. Coleta de Dados</h2><p>Coletamos informações que você nos fornece diretamente, tais como:</p><ul><li><strong>Informações de Contato:</strong> Nome, e-mail, número de telefone e nome da empresa.</li><li><strong>Informações da Loja:</strong> Catálogo de produtos, preços, imagens e informações de estoque que você nos fornece para a criação do e-commerce.</li><li><strong>Informações de Pagamento:</strong> Dados necessários para processar os pagamentos pelos nossos Serviços (taxa de setup e mensalidades).</li></ul><h2>3. Uso das Informações</h2><p>Utilizamos as informações coletadas para:</p><ul><li>Fornecer, operar e manter nossos Serviços para a loja ConnectHype.</li><li>Processar suas transações e gerenciar sua conta.</li><li>Melhorar, personalizar e expandir nossos Serviços.</li></ul><h2>4. Segurança dos Dados</h2><p>Implementamos uma variedade de medidas de segurança para manter a segurança de suas informações pessoais. Nossos sites são protegidos por Certificado SSL e utilizamos práticas de segurança padrão do setor.</p></div>
+    </div>
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content"><button class="modal-close" onclick="closeModal('termsModal')">×</button><h1>Termos de Serviço</h1><p><strong>Última atualização:</strong> 27 de junho de 2025</p><h2>1. Aceitação dos Termos</h2><p>Ao contratar os serviços da <strong>Equipe Unifinity</strong> para a sua loja, você concorda em cumprir e estar vinculado a estes Termos de Serviço.</p><h2>2. Pagamentos e Taxas</h2><ul><li><strong>Taxa de Setup:</strong> Pagamento único para a construção inicial da estrutura.</li><li><strong>Taxa de Mensalidade:</strong> Pagamento recorrente para manutenção e suporte contínuo.</li><li><strong>Custos de Tráfego Pago:</strong> Os custos de investimento em anúncios são de responsabilidade do cliente.</li></ul><h2>3. Propriedade Intelectual</h2><p>A <strong>Equipe Unifinity</strong> retém os direitos sobre a estrutura e código da plataforma. Você, o lojista, retém todos os direitos sobre seu conteúdo (produtos, imagens, dados de clientes).</p><h2>4. Limitação de Responsabilidade</h2><p>A <strong>Equipe Unifinity</strong> se esforça para fornecer os melhores serviços e estratégias, mas não garante resultados de vendas específicos, pois dependem de múltiplos fatores de mercado.</p><h2>5. Rescisão</h2><p>Ambas as partes podem rescindir o acordo mediante aviso prévio de 30 dias. Em caso de rescisão, você terá direito a um backup do seu banco de dados de produtos e clientes.</p></div>
+    </div>
+    
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+                        if (activeItem !== item) {
+                           activeItem.classList.remove('active');
+                           activeItem.querySelector('.faq-answer').style.maxHeight = 0;
+                        }
+                    });
+                    if (!isActive) { item.classList.add('active'); item.querySelector('.faq-answer').style.maxHeight = item.querySelector('.faq-answer').scrollHeight + "px"; } 
+                    else { item.classList.remove('active'); item.querySelector('.faq-answer').style.maxHeight = 0; }
+                });
+            });
+            updateSimulator();
+        });
+        function runAnalysis() {
+            const handle = document.getElementById('instagramHandle').value; 
+            const analysisBtn = document.getElementById('analysisBtn');
+            if (!handle || !handle.startsWith('@')) { alert('Por favor, insira um @ válido para simular.'); return; }
+            analysisBtn.disabled = true; analysisBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analisando...';
+            const elements = { 
+                followers: document.getElementById('followersValue'), followersGain: document.getElementById('followersGain'),
+                followersProjected: document.getElementById('followersProjected'), engagementProjected: document.getElementById('engagementProjected'),
+            };
+            Object.values(elements).forEach(el => el.innerHTML = '--');
+            const currentFollowers = 1660, projectedFollowers = 10000, followersToGain = projectedFollowers - currentFollowers, projectedEngagement = 4.8;
+            setTimeout(() => {
+                animateValue(elements.followers, 0, currentFollowers); animateValue(elements.followersGain, 0, followersToGain);
+                animateValue(elements.followersProjected, 0, projectedFollowers); animateValue(elements.engagementProjected, 0, projectedEngagement, false, '%');
+                analysisBtn.disabled = false; analysisBtn.innerHTML = 'Analisar Novamente <i class="fas fa-redo"></i>';
+            }, 1000);
+        }
+        function animateValue(element, start, end, isInt = true, suffix = '') {
+            let startTimestamp = null; const duration = 1200; 
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let currentValue = progress * (end - start) + start;
+                let iconHTML = element.querySelector('i') ? `<i class="${element.querySelector('i').className}"></i> ` : '';
+                if (isInt) { element.innerHTML = `${iconHTML}${Math.floor(currentValue).toLocaleString('pt-BR')}${suffix}`; } 
+                else { element.innerHTML = `${iconHTML}${currentValue.toFixed(1).replace('.', ',')}${suffix}`; }
+                if (progress < 1) { window.requestAnimationFrame(step); }
+            };
+            window.requestAnimationFrame(step);
+        }
+        function updateSimulator() {
+            const adSpend = parseInt(document.getElementById('adSpend').value), avgProfit = parseFloat(document.getElementById('avgProfit').value) || 0;
+            document.getElementById('adSpendValue').textContent = `R$ ${adSpend.toFixed(2).replace('.', ',')}`;
+            const costPerClick = 1.85, conversionRate = 0.008, monthlyAdSpend = adSpend * 30.4;
+            const estimatedClicks = Math.round(monthlyAdSpend / costPerClick), estimatedSales = Math.floor(estimatedClicks * conversionRate);
+            document.getElementById('clicksResult').innerHTML = `<i class="fas fa-mouse-pointer"></i> ~${estimatedClicks.toLocaleString('pt-BR')}`;
+            document.getElementById('salesResult').innerHTML = `<i class="fas fa-shopping-cart"></i> ~${estimatedSales.toLocaleString('pt-BR')}`;
+            const revenueResultEl = document.getElementById('revenueResult'), recommendationEl = document.getElementById('plan-recommendation-simulator');
+            if (avgProfit > 0) {
+                const projectedAnnualProfit = estimatedSales * avgProfit * 12;
+                revenueResultEl.innerHTML = `<i class="fas fa-trophy"></i> R$ ${projectedAnnualProfit.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                const millionCelebration = document.querySelector('.million-celebration');
+                if (projectedAnnualProfit >= 1000000 && !millionCelebration.dataset.celebrated) {
+                    millionCelebration.dataset.celebrated = "true";
+                    var myCanvas = document.getElementById('confetti-canvas'), myConfetti = confetti.create(myCanvas, { resize: true, useWorker: true });
+                    myCanvas.style.zIndex = '1000'; myConfetti({ particleCount: 200, spread: 160, origin: { y: 0.6 } });
+                    setTimeout(() => { myCanvas.style.zIndex = '-1'; delete millionCelebration.dataset.celebrated; }, 5000);
+                } else if (projectedAnnualProfit < 1000000) { delete millionCelebration.dataset.celebrated; }
+            } else { revenueResultEl.innerHTML = '<i class="fas fa-trophy"></i> R$ --'; }
+            let planName, planClass;
+            if (adSpend >= 500) { planName = 'IMPÉRIO'; planClass = 'imperio-text'; } 
+            else if (adSpend >= 100) { planName = 'AVANÇADO'; planClass = 'avancado-text'; } 
+            else { planName = 'DECOLAR'; planClass = 'decolar-text'; }
+            recommendationEl.innerHTML = `Com base na sua simulação, o <strong class="highlight ${planClass}">${planName}</strong> parece ser o plano ideal para você começar.`;
+        }
+        function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+        window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
+    </script>
+</body></html>
+
+        :root {
+            --brand-green: #39FF14;
+            --gold: #FFD700;
+            --decolar-blue: #00BFFF;
+            --night-bg: #070809;
+            --section-bg: #0C0D0F;
+            --card-bg: #121417;
