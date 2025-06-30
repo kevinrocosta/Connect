@@ -31,8 +31,7 @@
             background-color: var(--night-bg);
             color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            /* EFEITO DE VIDA: Fundo de estrelas sutil para um tema mais sofisticado */
+            overflow-x: hidden; /* Mantido para previnir scroll horizontal acidental */
             background-image:
                 radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
                 radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
@@ -42,7 +41,16 @@
             background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
         }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        section { padding: 100px 0; border-bottom: 1px solid #1a1a1a; }
+        section { padding: 80px 0; border-bottom: 1px solid #1a1a1a; }
+        
+        /* CORREÇÃO: Título principal (h1) agora é responsivo usando clamp() */
+        h1 {
+             font-size: clamp(2rem, 5vw, 2.75rem); /* Adapta o tamanho da fonte à largura da tela */
+             line-height: 1.3;
+             max-width: 850px; 
+             margin-left: auto; 
+             margin-right: auto;
+        }
         h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 70px; }
         p { font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); }
         .sub-heading { text-align: center; max-width: 700px; margin: -50px auto 70px; }
@@ -51,8 +59,8 @@
         .highlight.avancado-text { color: var(--brand-green); }
         .highlight.imperio-text { color: var(--gold); }
 
-        /* LOGO: Estilo moderno para o logotipo em texto */
-        .logo-header-text {
+        /* CORREÇÃO DE COR: Seletor mais específico para garantir que a cor seja aplicada, especialmente no link do rodapé */
+        .logo-header-text, a.logo-header-text {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
             font-size: clamp(3rem, 10vw, 4.5rem);
@@ -67,7 +75,6 @@
             color: var(--brand-green);
         }
         
-        /* BOTÕES: Efeitos magnéticos e chamativos para induzir o clique */
         .btn {
             display: inline-block; padding: 18px 36px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: none; cursor: pointer; text-align: center; position: relative; overflow: hidden;
@@ -98,22 +105,33 @@
         .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: left;}
         .pain-card { background: var(--card-bg); padding: 30px; border-radius: 12px; border-left: 4px solid #FF4500; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .pain-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        /* ÍCONES: Tamanho ajustado */
         .pain-card i { font-size: 1.6rem; color: #FF4500; margin-bottom: 20px; }
         .pain-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-        .phone-mockup { width: 100%; max-width: 380px; height: 750px; margin: 0 auto; background: #0c0c0c; border: 14px solid #111; border-radius: 50px; padding: 10px; box-shadow: 0 0 80px rgba(0,0,0,0.6); }
+        
+        /* CORREÇÃO: Altura do mockup agora é flexível para evitar overflow em telas menores */
+        .phone-mockup { 
+            width: 100%; 
+            max-width: 380px; 
+            height: 70vh; /* Usa a altura da viewport para ser flexível */
+            max-height: 750px; /* Mantém um limite máximo de altura */
+            margin: 0 auto; 
+            background: #0c0c0c; 
+            border: 14px solid #111; 
+            border-radius: 50px; 
+            padding: 10px; 
+            box-shadow: 0 0 80px rgba(0,0,0,0.6); 
+        }
 
         .security-seals { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
         .seal-item { text-align: center; color: var(--text-secondary); transition: transform 0.3s ease, color 0.3s ease; }
         .seal-item:hover { transform: scale(1.1); color: var(--text-primary); }
-        /* ÍCONES: Tamanho ajustado */
         .seal-item i { font-size: 2.2rem; margin-bottom: 12px; }
         .seal-item .google { color: #4285F4; }
         .seal-item .ssl { color: #00A653; }
         .seal-item .payment { color: #6872ff; }
         .seal-item span { font-size: 0.9rem; font-weight: 500; }
         
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; align-items: stretch; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: stretch; }
         .pricing-plan { background: var(--card-bg); padding: 40px 30px; border-radius: 15px; border: 2px solid var(--border-color); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .pricing-plan:not(.popular):hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
         .pricing-plan.decolar { border-color: var(--decolar-blue); }
@@ -134,10 +152,13 @@
         .pricing-plan.decolar h3 { color: var(--decolar-blue); }
         .pricing-plan.popular h3 { color: var(--brand-green); }
         .pricing-plan.empire h3 { color: var(--gold); }
-        .plan-price { font-size: 2.5rem; font-weight: 800; }
-        .plan-features li i { color: var(--brand-green); }
+        .plan-price { font-size: 2.5rem; font-weight: 800; margin-top: 15px; } /* Adicionado margem para espaçamento */
+        .plan-features { list-style: none; margin: 25px 0; flex-grow: 1; } /* Adicionado flex-grow para empurrar o botão para baixo */
+        .plan-features li { margin-bottom: 15px; display: flex; align-items: center; }
+        .plan-features li i { color: var(--brand-green); margin-right: 12px; width: 20px; text-align: center;}
         .pricing-plan.decolar .plan-features li i { color: var(--decolar-blue); }
         .pricing-plan.empire .plan-features li i { color: var(--gold); }
+        .plan-recommendation { font-size: 0.9rem; color: var(--text-secondary); margin-top: 20px; margin-bottom: 25px; }
         .plan-recommendation strong { color: var(--brand-green); }
         .pricing-plan.decolar .plan-recommendation strong { color: var(--decolar-blue); }
         .pricing-plan.empire .plan-recommendation strong { color: var(--gold); }
@@ -163,8 +184,42 @@
         .modal-content ul { padding-left: 20px; }
         .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--text-secondary); cursor: pointer; border: none; background: none; }
         .modal-close:hover { color: var(--text-primary); }
+        
+        /* CORREÇÃO: Media query para ajustar animações em telas menores */
+        @media (max-width: 992px) { 
+            .pricing-plan.popular, .pricing-plan.empire { 
+                transform: scale(1); 
+                animation: none; 
+            } 
+        }
 
-        @media (max-width: 992px) { .pricing-plan.popular, .pricing-plan.empire { transform: scale(1); animation: none; } }
+        /* CORREÇÃO: Media query geral para telas de celular, ajustando espaçamentos e fontes */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            .dashboard {
+                padding: 25px;
+            }
+            .input-group, .results-grid {
+                 grid-template-columns: 1fr; /* Força uma única coluna */
+            }
+            p {
+                font-size: 1rem;
+            }
+            .pain-grid {
+                gap: 20px;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr; /* Força uma única coluna */
+                gap: 25px;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -177,7 +232,7 @@
                     Connect<span class="highlight">Hype</span>
                 </div>
 
-                <h1 style="max-width: 850px; margin-left: auto; margin-right: auto;">Você tem o produto que o Brasil deseja. Por que vender apenas para sua vizinhança?</h1>
+                <h1>Você tem o produto que o Brasil deseja. Por que vender apenas para sua vizinhança?</h1>
                 <p style="max-width: 700px; margin: 24px auto 50px; font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary);">Chegou a hora de parar de competir por preço e começar a dominar por alcance. Aperte o play e descubra o ecossistema que transforma sua loja em um nome nacional.</p>
                 
                 <div class="video-wrapper">
@@ -385,6 +440,5 @@
         function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
     </script>
-</body></html>
-
-            --card-bg: #121417;
+</body>
+</html>
